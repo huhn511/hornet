@@ -33,7 +33,7 @@ require (
 	github.com/iotaledger/iota.go/v2 v2.0.0
 	github.com/iotaledger/hive.go v0.0.0-20210105145855-ce2c8231a283
 	github.com/iotaledger/iota.go v1.0.0-beta.15.0.20210128205444-34dfc25315f2
-	github.com/iotaledger/iota.go/v2 v2.0.0-20210131170834-4209e58f134b
+	github.com/iotaledger/iota.go/v2 v2.0.0-20210205125404-a89274bfa8fb
 	github.com/ipfs/go-ds-badger v0.2.6
 	github.com/koron/go-ssdp v0.0.2 // indirect
 	github.com/labstack/echo/v4 v4.1.17
@@ -72,5 +72,4 @@ require (
 	golang.org/x/tools v0.1.0 // indirect
 	gotest.tools/v3 v3.0.3 // indirect
 	golang.org/x/tools v0.0.0-20201123232213-4aa1a224cdb5 // indirect
-	google.golang.org/grpc v1.34.0 // indirect
 )
