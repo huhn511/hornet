@@ -13,6 +13,7 @@ require (
 	github.com/containerd/containerd v1.4.3 // indirect
 	github.com/davidlazar/go-crypto v0.0.0-20200604182044-b73af7476f6c // indirect
 	github.com/dchest/blake2b v1.0.0
+	github.com/dgraph-io/badger/v2 v2.0.3 // indirect
 	github.com/dgraph-io/badger/v3 v3.2011.1
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v20.10.3+incompatible
@@ -30,10 +31,8 @@ require (
 	github.com/gorilla/websocket v1.4.2
 	github.com/hashicorp/go-version v1.2.1 // indirect
 	github.com/iotaledger/hive.go v0.0.0-20210209220536-c4c55778aaf7
-	github.com/iotaledger/iota.go/v2 v2.0.0
-	github.com/iotaledger/hive.go v0.0.0-20210105145855-ce2c8231a283
 	github.com/iotaledger/iota.go v1.0.0-beta.15.0.20210128205444-34dfc25315f2
-	github.com/iotaledger/iota.go/v2 v2.0.0-20210217145655-7dd8da170618
+	github.com/iotaledger/iota.go/v2 v2.0.0
 	github.com/ipfs/go-ds-badger v0.2.6
 	github.com/koron/go-ssdp v0.0.2 // indirect
 	github.com/labstack/echo/v4 v4.1.17
@@ -71,5 +70,4 @@ require (
 	golang.org/x/net v0.0.0-20210119194325-5f4716e94777
 	golang.org/x/tools v0.1.0 // indirect
 	gotest.tools/v3 v3.0.3 // indirect
-	golang.org/x/tools v0.0.0-20201123232213-4aa1a224cdb5 // indirect
 )
