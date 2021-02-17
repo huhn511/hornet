@@ -2,8 +2,6 @@ module github.com/gohornet/hornet
 
 go 1.15
 
-replace github.com/iotaledger/iota.go/v2 => github.com/iotaledger/iota.go/v2 v2.0.0-20210131170834-4209e58f134b
-
 require (
 	github.com/Microsoft/go-winio v0.4.16 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
@@ -13,7 +11,6 @@ require (
 	github.com/containerd/containerd v1.4.3 // indirect
 	github.com/davidlazar/go-crypto v0.0.0-20200604182044-b73af7476f6c // indirect
 	github.com/dchest/blake2b v1.0.0
-	github.com/dgraph-io/badger/v2 v2.0.3 // indirect
 	github.com/dgraph-io/badger/v3 v3.2011.1
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v20.10.3+incompatible
@@ -32,7 +29,7 @@ require (
 	github.com/hashicorp/go-version v1.2.1 // indirect
 	github.com/iotaledger/hive.go v0.0.0-20210209220536-c4c55778aaf7
 	github.com/iotaledger/iota.go v1.0.0-beta.15.0.20210128205444-34dfc25315f2
-	github.com/iotaledger/iota.go/v2 v2.0.0
+	github.com/iotaledger/iota.go/v2 v2.0.0-20210217145655-7dd8da170618
 	github.com/ipfs/go-ds-badger v0.2.6
 	github.com/koron/go-ssdp v0.0.2 // indirect
 	github.com/labstack/echo/v4 v4.1.17
