@@ -169,7 +169,68 @@
 <blockquote>
 <p>The IOTA community node</p>
 </blockquote>
-<img src="https://raw.githubusercontent.com/gohornet/logo/master/HORNET_logo.svg?sanitize=true">
+<p><img src="./assets/HORNET_logo.svg" alt="" /></p>
+<p>HORNET is a powerful, community driven IOTA fullnode software written in Go.
+It is easy to install and runs on low-end devices like the Raspberry Pi 4.</p>
+<hr />
+<h2><a class="header" href="#notes" id="notes">Notes</a></h2>
+<ul>
+<li><strong>Please open a <a href="https://github.com/gohornet/hornet/issues/new">new issue</a> if you detect an error or crash (or submit a PR if you have already fixed it).</strong></li>
+<li><strong>The issue section is not a support section, if you have questions about HORNET please post them in the <code>#hornet</code> channel (<a href="https://discord.iota.org/">official iota discord server</a>).</strong></li>
+</ul>
+<hr />
+<p><em>Table of contents</em></p>
+<!--ts-->
+<ul>
+<li><a href="welcome.html#documentation">Documentation</a></li>
+<li><a href="welcome.html#autopeering">Autopeering</a></li>
+<li><a href="welcome.html#contributing">Contributing</a></li>
+<li><a href="welcome.html#installation">Installation</a></li>
+<li><a href="welcome.html#plugins">Plugins</a></li>
+<li><a href="welcome.html#docker">Docker</a></li>
+</ul>
+<!--te-->
+<h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
+<p>Please have a look into our <a href="https://github.com/gohornet/hornet/wiki">HORNET wiki</a></p>
+<h2><a class="header" href="#autopeering" id="autopeering">Autopeering</a></h2>
+<p><strong>WARNING: The autopeering plugin will disclose your public IP address to possibly all nodes and entry points. Please disable the plugin if you do not want this to happen!</strong></p>
+<p>The autopeering plugin is still in an early state. We recommend to add 1-2 static peers as well.
+If you want to disable autopeering, you can do so by adding it to the <code>disablePlugins</code> in your <code>config.json</code>:</p>
+<pre><code class="language-json">&quot;node&quot;: {
+    &quot;disablePlugins&quot;: [&quot;Autopeering&quot;],
+    &quot;enablePlugins&quot;: []
+  },
+</code></pre>
+<h2><a class="header" href="#contributing" id="contributing">Contributing</a></h2>
+<ul>
+<li>See <a href="/CONTRIBUTING.html">CONTRIBUTING</a></li>
+</ul>
+<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
+<h3><a class="header" href="#binary" id="binary">Binary</a></h3>
+<ul>
+<li>Download the <a href="https://github.com/gohornet/hornet/releases/latest">latest release</a> for your system (e.g. <code>HORNET-x.x.x_Linux_ARM64.tar.gz</code> for the Raspberry Pi 4)</li>
+<li>Extract the files in a folder of your choice</li>
+<li>Add neighbors to the <code>peering.json</code> file (optional)</li>
+<li>Run HORNET: <code>./hornet -c config</code></li>
+</ul>
+<h3><a class="header" href="#apt" id="apt">APT</a></h3>
+<pre><code>wget -qO - https://ppa.hornet.zone/pubkey.txt | sudo apt-key add -
+sudo sh -c 'echo &quot;deb http://ppa.hornet.zone stable main&quot; &gt;&gt; /etc/apt/sources.list.d/hornet.list'
+sudo apt update
+sudo apt install hornet
+</code></pre>
+<p><a href="https://github.com/gohornet/hornet/wiki/Tutorials%3A-Linux%3A-Install-HORNET">Tutorial: Install HORNET with APT</a></p>
+<hr />
+<h2><a class="header" href="#plugins" id="plugins">Plugins</a></h2>
+<p>HORNETs functionality is extended by plugins. Available plugins are listed <a href="https://github.com/gohornet/hornet/wiki/Plugins">here</a>.</p>
+<hr />
+<h2><a class="header" href="#docker" id="docker">Docker</a></h2>
+<p><img src="https://img.shields.io/docker/pulls/gohornet/hornet?style=for-the-badge" alt="Docker Pulls" /></p>
+<p>Pull HORNET from <a href="https://hub.docker.com/r/gohornet/hornet">Docker Hub</a></p>
+<p><strong>Build a Docker image</strong></p>
+<ul>
+<li>See <a href="docker/README.html">Docker</a></li>
+</ul>
 <h1><a class="header" href="#tutorials" id="tutorials">Tutorials</a></h1>
 <ul>
 <li><a href="tutorials/./setup.html">Setup HORNET</a></li>
@@ -640,7 +701,7 @@ These settings are available:</p>
 <h3><a class="header" href="#im-missing-feature-xyz-can-you-add-it" id="im-missing-feature-xyz-can-you-add-it">I'm missing feature xyz. Can you add it?</a></h3>
 <p>Please open a <a href="https://github.com/gohornet/hornet/issues/new?assignees=&amp;labels=feature&amp;template=feature_request.md&amp;title=">new feature request</a>. We cannot assure that the feature will actually be implemented.
 Pull requests are very welcome!</p>
-<h1><a class="header" href="#contributing" id="contributing">Contributing</a></h1>
+<h1><a class="header" href="#contributing-1" id="contributing-1">Contributing</a></h1>
 <p><strong>By participating to this project, you agree to abide our <a href="/CODE_OF_CONDUCT.html">code of conduct</a>.</strong></p>
 <hr />
 <h2><a class="header" href="#how-to-contribute" id="how-to-contribute">How to contribute</a></h2>
