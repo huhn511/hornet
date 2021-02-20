@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Welcome - HORNET Docs</title>
+        <title>FAQ - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html" class="active"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,20 +163,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#welcome-to-hornet" id="welcome-to-hornet">Welcome to HORNET</a></h1>
-<blockquote>
-<p>The IOTA community node</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/gohornet/logo/master/HORNET_logo.svg?sanitize=true">
+                        <h1><a class="header" href="#faq" id="faq">FAQ</a></h1>
+<h3><a class="header" href="#what-is-hornet" id="what-is-hornet">What is HORNET?</a></h3>
+<p>HORNET is a community driven IOTA fullnode. It is written in Go which makes it lightweight and fast.</p>
+<hr />
+<h3><a class="header" href="#does-hornet-run-on-the-mainnet" id="does-hornet-run-on-the-mainnet">Does HORNET run on the Mainnet?</a></h3>
+<p>Yes, HORNET gets actively tested within the IOTA Mainnet.</p>
+<hr />
+<h3><a class="header" href="#can-i-run-hornet-on-a-raspberry-pi" id="can-i-run-hornet-on-a-raspberry-pi">Can I run HORNET on a Raspberry Pi?</a></h3>
+<p>Yes, you can run HORNET on a Raspberry Pi 4B  with an external SSD. But we recommend to run HORNET on a more powerful device.</p>
+<hr />
+<h3><a class="header" href="#i-have-difficulty-setting-up-hornet-where-can-i-get-help" id="i-have-difficulty-setting-up-hornet-where-can-i-get-help">I have difficulty setting up HORNET. Where can I get help?</a></h3>
+<p>Our community loves helping you. Just ask your questions in the <code>#hornet</code> channel on the <a href="https://discord.iota.org/">official IOTA Discord Server</a></p>
+<hr />
+<h3><a class="header" href="#what-are-the-spammer-settings-for" id="what-are-the-spammer-settings-for">What are the spammer settings for?</a></h3>
+<p>You can enable the integrated spammer by adding <code>&quot;Spammer&quot;</code> to <code>&quot;enableplugins&quot;</code> (comma separated).
+These settings are available:</p>
+<pre><code class="language-json">&quot;spammer&quot;: {
+    &quot;address&quot;: &quot;HORNET99INTEGRATED99SPAMMER999999999999999999999999999999999999999999999999999999&quot;,
+    &quot;depth&quot;: 3,
+    &quot;message&quot;: &quot;Spamming with HORNET tipselect&quot;,
+    &quot;tag&quot;: &quot;HORNET99INTEGRATED99SPAMMER&quot;,
+    &quot;tpsratelimit&quot;: 0.1,
+    &quot;workers&quot;: 1
+  }
+</code></pre>
+<ul>
+<li><code>address</code>: The address you want to use (you don't have to own it as it's zero value spam)</li>
+<li><code>depth</code>: Depth for tip selection. Set it to <code>3</code> if you don't know what this is for.</li>
+<li><code>message</code>: The message you want to send with your spam (keep it short)</li>
+<li><code>tag</code>: The tag you want to use (can not be longer than 27 trytes [A-Z, 9])</li>
+<li><code>tpsratelimit</code>: Defines how many transactions (TX) the spammer should try to send (e.g. <code>0.1</code> stands for 0.1 TX per second --&gt; 1 TX every 10 seconds. <strong>NOTE:</strong> the maximum <code>tpsratelimit</code> is limited by your used hardware. Start with a lower value and slightly increase it, watch your CPU usage.</li>
+<li><code>workers</code>: Number of workers the spammer spins up --&gt; Number of CPU cores you want to use (you should not use all available cores)</li>
+</ul>
+<hr />
+<h3><a class="header" href="#can-i-contribute" id="can-i-contribute">Can I contribute?</a></h3>
+<p>Of course, you are very welcome! Just send a PR or offer your help in the <code>#hornet</code> channel on the <a href="https://discord.iota.org/">official IOTA Discord Server</a></p>
+<hr />
+<h3><a class="header" href="#i-found-a-bug-what-should-i-do" id="i-found-a-bug-what-should-i-do">I found a bug, what should I do?</a></h3>
+<p>Please open a <a href="https://github.com/gohornet/hornet/issues/new?assignees=&amp;labels=bug&amp;template=bug_report.md&amp;title=">new issue</a>. We'll have a look at your bug report as soon as possible.</p>
+<hr />
+<h3><a class="header" href="#im-missing-feature-xyz-can-you-add-it" id="im-missing-feature-xyz-can-you-add-it">I'm missing feature xyz. Can you add it?</a></h3>
+<p>Please open a <a href="https://github.com/gohornet/hornet/issues/new?assignees=&amp;labels=feature&amp;template=feature_request.md&amp;title=">new feature request</a>. We cannot assure that the feature will actually be implemented.
+Pull requests are very welcome!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="troubleshooting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="tutorials/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="Contribution.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -188,9 +230,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="troubleshooting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a rel="next" href="tutorials/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="Contribution.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

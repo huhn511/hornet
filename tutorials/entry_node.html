@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Welcome - HORNET Docs</title>
+        <title>Hosting An Entry Node - HORNET Docs</title>
         
         
 
@@ -18,28 +18,28 @@
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="favicon.svg">
+        <link rel="icon" href="../favicon.svg">
         
         
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="../favicon.png">
         
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
         
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="stylesheet" href="../css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -49,7 +49,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="../tutorials/entry_node.html" class="active"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -131,7 +131,7 @@
 
                     <div class="right-buttons">
                         
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -163,20 +163,72 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#welcome-to-hornet" id="welcome-to-hornet">Welcome to HORNET</a></h1>
-<blockquote>
-<p>The IOTA community node</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/gohornet/logo/master/HORNET_logo.svg?sanitize=true">
+                        <p>This is a tutorial on how to host a autopeering entry node.</p>
+<p><strong>Note: This tutorial assumes that you are using Ubuntu and our <a href="./setup.html">APT install</a>. The setup process may differ on other OS or install methods.</strong></p>
+<h3><a class="header" href="#preparations" id="preparations">Preparations</a></h3>
+<ul>
+<li>Setup and secure your server (Firewall, SSH-Key,...)</li>
+<li>Install HORNET (don't start it yet!)</li>
+<li>It is recommended to use a domain name for your entry node (you'll need a proxy setup, e.g. nginx). However an IP address will work too.</li>
+</ul>
+<h3><a class="header" href="#configuration" id="configuration">Configuration</a></h3>
+<ul>
+<li>Randomly generate a Base58 encoded 256-bit string (seed):
+<ul>
+<li>Option 1: Generate your seed with a true random number generator (recommended for production usage).</li>
+<li>Option 2: Use the build in HORNET seed generator: <code>hornet tool seedgen</code>.</li>
+</ul>
+</li>
+<li>Switch on the autopeering mode in your <code>config.json</code>:<br>
+<code>/var/lib/hornet/config.json</code>
+<pre><code class="language-json">...
+&quot;network&quot;: {
+    ...
+    &quot;autopeering&quot;: {
+        &quot;bindAddress&quot;: &quot;0.0.0.0:14626&quot;,
+        &quot;runAsEntryNode&quot;: true,
+        &quot;seed&quot;: &quot;7xFNTP5Fc3wnD78LarNTrvRoKiLESA9qecn3eR5HSVBj&quot;
+    }
+}
+...
+</code></pre>
+</li>
+<li>Start HORNET with <code>sudo service start hornet &amp;&amp; sudo journalctl -n hornet -f</code>. HORNET will start in an autopeering entry node only mode. Other functions are disabled in this mode.</li>
+<li>In the HORNET logs, you will see something like this:
+<pre><code>INFO    Autopeering     Autopeering started: ID=a0ba6bf62d6fe911 Address=0.0.0.0:14626/udp PublicKey=9CT42uZC6GetwoT2Jz7Lc5t6LGvXphp9gLvEsdoXEizV
+</code></pre>
+Note down your PublicKey.<br>
+<strong>Your entry node address is <code>&lt;PublicKey&gt;@&lt;your-domain.tld&gt;:&lt;autopeering-port&gt;</code></strong></li>
+<li>Add your entry node address to the <code>network.autopeering.entryNodes</code> in your nodes <code>config.json</code></li>
+<li>Done, your nodes should now autopeer with the help of your entry node.</li>
+</ul>
+<h3><a class="header" href="#monitoring" id="monitoring">Monitoring</a></h3>
+<p>You can monitor your entry node with the <code>healthz</code> API route.<br>
+<code>&lt;your-domain.tld&gt;:&lt;api-port&gt;/healthz</code><br>
+It will return an http status code 200 if everything is OK.</p>
+<h3><a class="header" href="#hosting-a-public-entry-node" id="hosting-a-public-entry-node">Hosting a public entry node</a></h3>
+<p>If you want to host an entry node for a public network such as the mainnet, there are a few things to consider:</p>
+<ul>
+<li>You should be experienced in working with servers and server security.</li>
+<li>A domain name is a must have.</li>
+<li>Your domain name should have both, an A (IPv4) and AAAA (IPv6) record.</li>
+<li>Your entry node gets monitored (e.g. with the <code>healthz</code> API and an uptime monitor).</li>
+<li>You are able to update your entry node shortly after a new HORNET version gets released.</li>
+</ul>
+<p>If these points are not a problem for you, feel free to contact us (e.g. in the <a href="https://discord.iota.org/">official IOTA Discord <code>#hornet</code> channel</a>) to have your entry node added to the official entry nodes!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../tutorials/private_tangle.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="tutorials/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../api-reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -188,9 +240,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="../tutorials/private_tangle.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a rel="next" href="tutorials/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../api-reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -213,14 +269,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

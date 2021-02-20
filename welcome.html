@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html" class="active"><strong aria-hidden="true">1.</strong> Welcome</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html" class="active"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,70 +163,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#hornet---the-iota-community-node" id="hornet---the-iota-community-node">HORNET - The IOTA community node</a></h1>
-<p><img src="https://img.shields.io/github/workflow/status/gohornet/hornet/Build?style=for-the-badge" alt="GitHub Workflow Status" /> <img src="https://img.shields.io/github/v/release/gohornet/hornet?style=for-the-badge" alt="GitHub release (latest by date)" /> <img src="https://img.shields.io/github/go-mod/go-version/gohornet/hornet?style=for-the-badge" alt="GitHub go.mod Go version" /> <img src="https://img.shields.io/github/license/gohornet/hornet?style=for-the-badge" alt="GitHub" /></p>
-<p><img src="https://raw.githubusercontent.com/gohornet/logo/master/HORNET_logo.svg?sanitize=true"></p>
-<p>HORNET is a powerful, community driven IOTA fullnode software written in Go.
-It is easy to install and runs on low-end devices like the Raspberry Pi 4.</p>
-<hr />
-<h2><a class="header" href="#notes" id="notes">Notes</a></h2>
-<ul>
-<li><strong>Please open a <a href="https://github.com/gohornet/hornet/issues/new">new issue</a> if you detect an error or crash (or submit a PR if you have already fixed it).</strong></li>
-<li><strong>The issue section is not a support section, if you have questions about HORNET please post them in the <code>#hornet</code> channel (<a href="https://discord.iota.org/">official iota discord server</a>).</strong></li>
-</ul>
-<hr />
-<p><em>Table of contents</em></p>
-<!--ts-->
-<ul>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#autopeering">Autopeering</a></li>
-<li><a href="#contributing">Contributing</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#plugins">Plugins</a></li>
-<li><a href="#docker">Docker</a></li>
-</ul>
-<!--te-->
-<h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
-<p>Please have a look into our <a href="https://github.com/gohornet/hornet/wiki">HORNET wiki</a></p>
-<h2><a class="header" href="#autopeering" id="autopeering">Autopeering</a></h2>
-<p><strong>WARNING: The autopeering plugin will disclose your public IP address to possibly all nodes and entry points. Please disable the plugin if you do not want this to happen!</strong></p>
-<p>The autopeering plugin is still in an early state. We recommend to add 1-2 static peers as well.
-If you want to disable autopeering, you can do so by adding it to the <code>disablePlugins</code> in your <code>config.json</code>:</p>
-<pre><code class="language-json">&quot;node&quot;: {
-    &quot;disablePlugins&quot;: [&quot;Autopeering&quot;],
-    &quot;enablePlugins&quot;: []
-  },
-</code></pre>
-<h2><a class="header" href="#contributing" id="contributing">Contributing</a></h2>
-<ul>
-<li>See <a href="/CONTRIBUTING.html">CONTRIBUTING</a></li>
-</ul>
-<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
-<h3><a class="header" href="#binary" id="binary">Binary</a></h3>
-<ul>
-<li>Download the <a href="https://github.com/gohornet/hornet/releases/latest">latest release</a> for your system (e.g. <code>HORNET-x.x.x_Linux_ARM64.tar.gz</code> for the Raspberry Pi 4)</li>
-<li>Extract the files in a folder of your choice</li>
-<li>Add neighbors to the <code>peering.json</code> file (optional)</li>
-<li>Run HORNET: <code>./hornet -c config</code></li>
-</ul>
-<h3><a class="header" href="#apt" id="apt">APT</a></h3>
-<pre><code>wget -qO - https://ppa.hornet.zone/pubkey.txt | sudo apt-key add -
-sudo sh -c 'echo &quot;deb http://ppa.hornet.zone stable main&quot; &gt;&gt; /etc/apt/sources.list.d/hornet.list'
-sudo apt update
-sudo apt install hornet
-</code></pre>
-<p><a href="https://github.com/gohornet/hornet/wiki/Tutorials%3A-Linux%3A-Install-HORNET">Tutorial: Install HORNET with APT</a></p>
-<hr />
-<h2><a class="header" href="#plugins" id="plugins">Plugins</a></h2>
-<p>HORNETs functionality is extended by plugins. Available plugins are listed <a href="https://github.com/gohornet/hornet/wiki/Plugins">here</a>.</p>
-<hr />
-<h2><a class="header" href="#docker" id="docker">Docker</a></h2>
-<p><img src="https://img.shields.io/docker/pulls/gohornet/hornet?style=for-the-badge" alt="Docker Pulls" /></p>
-<p>Pull HORNET from <a href="https://hub.docker.com/r/gohornet/hornet">Docker Hub</a></p>
-<p><strong>Build a Docker image</strong></p>
-<ul>
-<li>See <a href="docker/README.html">Docker</a></li>
-</ul>
+                        <h1><a class="header" href="#welcome-to-hornet" id="welcome-to-hornet">Welcome to HORNET</a></h1>
+<blockquote>
+<p>The IOTA community node</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/gohornet/logo/master/HORNET_logo.svg?sanitize=true">
 
                     </main>
 
@@ -234,6 +175,10 @@ sudo apt install hornet
                         <!-- Mobile navigation buttons -->
                         
 
+                        
+                            <a rel="next" href="tutorials/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -244,6 +189,10 @@ sudo apt install hornet
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
 
+                
+                    <a rel="next" href="tutorials/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
