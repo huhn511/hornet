@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Run a private Tangle - HORNET Docs</title>
+        <title>Run HORNET - HORNET Docs</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/private_tangle.html" class="active"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="../tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/build.html"><strong aria-hidden="true">2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="../tutorials/run.html" class="active"><strong aria-hidden="true">2.2.</strong> Run HORNET</a></li></ol></li><li class="chapter-item expanded "><a href="../api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="../troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="../code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,159 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>This is a small tutorial on how to run your own private Tangle.</p>
-<p><strong>Note: This tutorial assumes that you are using Ubuntu. The setup process may differ on other OS.</strong></p>
-<h3><a class="header" href="#preparations" id="preparations">Preparations</a></h3>
-<ul>
-<li>Set up your server and install HORNET (<a href="./setup.html">APT install</a>) - <strong>Do not start it yet</strong></li>
-<li>Generate a secure Seed. Even if it's a private Tangle without real value you should use a random Seed.</li>
-</ul>
-<h3><a class="header" href="#configuration" id="configuration">Configuration</a></h3>
-<p>Adapt the configuration to your needs<br>
-<br></p>
-<p><strong>Enable the coordinator plugin:</strong></p>
-<pre><code class="language-json">&quot;node&quot;:{
-    &quot;alias&quot;: &quot;Coordinator&quot;,
-    &quot;showAliasInGetNodeInfo&quot;: false,
-    &quot;disablePlugins&quot;: [],
-    &quot;enablePlugins&quot;: [&quot;Coordinator&quot;]
-},
-</code></pre>
-<p><strong>Coordinator settings:</strong>
-<br>
-<a href="https://github.com/gohornet/hornet/wiki/Configuration#Coordinator">Coordinator configuration docu</a>
-<br><br>
-Some hints:</p>
-<ul>
-<li>Set a low MWM. If you are the only one using this Tangle, you need no (high) spam protection</li>
-<li>The higher the merkle tree depth, the longer it will take to compute the merkle tree. Calculate how many milestones you really need:<br>Number of possible milestones: 2<sup>merkleTreeDepth</sup></li>
-</ul>
-<br>
-Example:
-<pre><code class="language-json">  &quot;coordinator&quot;: {
-    &quot;address&quot;: &quot;&quot;,
-    &quot;securityLevel&quot;: 2,
-    &quot;merkleTreeDepth&quot;: 18,
-    &quot;mwm&quot;: 5,
-    &quot;stateFilePath&quot;: &quot;coordinator.state&quot;,
-    &quot;merkleTreeFilePath&quot;: &quot;coordinator.tree&quot;,
-    &quot;intervalSeconds&quot;: 60,
-    &quot;checkpoints&quot;: {
-      &quot;maxTrackedTails&quot;: 10000
-    }
-  },
-</code></pre>
-<p><strong>Global snapshot settings:</strong>
-<br>
-<a href="https://github.com/gohornet/hornet/wiki/Configuration#Snapshots">Snapshot configuration docu</a>
-<br><br></p>
-<pre><code class="language-json">  &quot;snapshots&quot;: {
-    &quot;loadType&quot;: &quot;global&quot;,
-    &quot;global&quot;: {
-      &quot;path&quot;: &quot;snapshot.csv&quot;,
-      &quot;spentAddressesPaths&quot;: [],
-      &quot;index&quot;: 0
-    }
-  },
-</code></pre>
-<h3><a class="header" href="#generate-the-merkle-tree" id="generate-the-merkle-tree">Generate the merkle tree</a></h3>
-<p><strong>Note: This may take some time (depending on the merkle tree depth and your hardware)</strong></p>
-<ol>
-<li>
-<pre><code class="language-bash">cd /var/lib/hornet
-sudo -u hornet COO_SEED=&quot;YOUR9COO9SEED9HERE...&quot; hornet tool merkle
-</code></pre>
-<p>The output will look like this:</p>
-<pre><code>calculating 1024 addresses...
-calculated 1024/1024 (100.00%) addresses (took 1s).
-calculating nodes for layer 9
-calculating nodes for layer 8
-calculating nodes for layer 7
-calculating nodes for layer 6
-calculating nodes for layer 5
-calculating nodes for layer 4
-calculating nodes for layer 3
-calculating nodes for layer 2
-calculating nodes for layer 1
-calculating nodes for layer 0
-merkle tree root: BHKJSBMRSZLFMXJFYE9NHYTZCRAZQHLZTIBTKVNZLVWAXKESPOANYARWQYOYYHONDJYEAMMSOQEGGEPKB
-successfully created merkle tree (took 1s).
-</code></pre>
-</li>
-<li>
-<p>Add the <code>merkle tree root</code> address to your config<br><br>
-Example:</p>
-</li>
-</ol>
-<pre><code class="language-json">  &quot;coordinator&quot;: {
-    &quot;address&quot;: &quot;BHKJSBMRSZLFMXJFYE9NHYTZCRAZQHLZTIBTKVNZLVWAXKESPOANYARWQYOYYHONDJYEAMMSOQEGGEPKB&quot;,
-    &quot;securityLevel&quot;: 2,
-    &quot;merkleTreeDepth&quot;: 18,
-    &quot;mwm&quot;: 5,
-    &quot;stateFilePath&quot;: &quot;coordinator.state&quot;,
-    &quot;merkleTreeFilePath&quot;: &quot;coordinator.tree&quot;,
-    &quot;intervalSeconds&quot;: 60,
-    &quot;checkpoints&quot;: {
-      &quot;maxTrackedTails&quot;: 10000
-    }
-  },
-</code></pre>
-<h3><a class="header" href="#initial-iota-distribution" id="initial-iota-distribution">Initial IOTA Distribution</a></h3>
-<p>If you set up a new tangle you initially need to distribute the IOTA to at least one address.</p>
-<ol>
-<li>
-<p>Generate a secure (random) Seed and generate an address with this Seed</p>
-</li>
-<li>
-<p>Backup this Seed</p>
-</li>
-<li>
-<p>Create a new file called <code>snapshot.csv</code> and add this contend:</p>
-<pre><code>YOUR9GENERATED9ADDRESS9FROM9YOUR9SEED;2779530283277761
-</code></pre>
-</li>
-<li>
-<p>Save this file to the HORNET dir (<code>/var/lib/hornet</code>)</p>
-</li>
-</ol>
-<h3><a class="header" href="#bootstrap-the-coordinator" id="bootstrap-the-coordinator">Bootstrap the Coordinator</a></h3>
-<ol>
-<li>Change to the HORNET dir:
-<pre><code>cd /var/lib/hornet
-</code></pre>
-</li>
-<li>Run HORNET the first time:
-<pre><code>sudo -u hornet COO_SEED=&quot;YOUR9COO9SEED9HERE...&quot; hornet --cooBootstrap
-</code></pre>
-</li>
-<li>Once the bootstrap process is done you can stop HORNET (CTRL+C) and let it run as a service:
-<pre><code>sudo sh -c 'echo &quot;COO_SEED=YOUR9COO9SEED9HERE...&quot; &gt;&gt; /etc/default/hornet'
-sudo systemctl enable --now hornet.service
-</code></pre>
-</li>
-<li>Congrats, your HORNET Coordinator is up and running!</li>
-</ol>
-<h3><a class="header" href="#add-additional-hornet-nodes-to-your-private-tangle" id="add-additional-hornet-nodes-to-your-private-tangle">Add additional HORNET nodes to your private tangle</a></h3>
-<ol>
-<li>Install an additional HORNET</li>
-<li>Copy over the config.json from your HORNET Coordinator (<strong>make sure you removed <code>Coordinator</code> from the <code>&quot;enablePlugins&quot;</code></strong>)</li>
-<li>Copy over the <code>snapshot.csv</code> from your HORNET Coordinator</li>
-<li>Start HORNET</li>
-</ol>
-<p>Note: Once your HORNET Coordinator node created the first local snapshot, you can use this local snapshot to add new HORNET nodes to your private tangle.</p>
-<h3><a class="header" href="#use-a-new-merkle-tree" id="use-a-new-merkle-tree">Use a new merkle tree</a></h3>
-<p>In case you run out of new milestones, you can replace the old merkle tree with a new one.</p>
-<ol>
-<li>Stop the HORNET Coordinator</li>
-<li>Generate a new merkle tree</li>
-<li>Replace the <code>coordinator.address</code> in your <code>config.json</code> with the new <code>merkle tree root</code> address</li>
-<li>Migrate your HORNET Coordinator to this merkle tree:
-<pre><code>cd /var/lib/hornet
-sudo rm coordinator.state
-sudo -u hornet hornet --overwriteCooAddress --cooBootstrap --cooStartIndex xxxx
-</code></pre>
-Note: Replace <code>xxxx</code> with the start index (e.g. last issued milestone index + 1)</li>
-</ol>
+                        <p>This is a small tutorial on how to build HORNET.</p>
+<p><strong>Note: This tutorial assumes that you have prebuilt HORNET. Learn <a href="./build.html">how to build HORNET here</a></strong></p>
 
                     </main>
 
@@ -328,7 +177,7 @@ Note: Replace <code>xxxx</code> with the start index (e.g. last issued milestone
                         
 
                         
-                            <a rel="next" href="../tutorials/entry_node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../api-reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -346,7 +195,7 @@ Note: Replace <code>xxxx</code> with the start index (e.g. last issued milestone
                 
 
                 
-                    <a rel="next" href="../tutorials/entry_node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../api-reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

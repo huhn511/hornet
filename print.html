@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/setup.html"><strong aria-hidden="true">2.1.</strong> Setup HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.2.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/private_tangle.html"><strong aria-hidden="true">2.3.</strong> Run a private Tangle</a></li><li class="chapter-item expanded "><a href="tutorials/entry_node.html"><strong aria-hidden="true">2.4.</strong> Hosting An Entry Node</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">2.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/build.html"><strong aria-hidden="true">2.1.</strong> Build HORNET</a></li><li class="chapter-item expanded "><a href="tutorials/run.html"><strong aria-hidden="true">2.2.</strong> Run HORNET</a></li></ol></li><li class="chapter-item expanded "><a href="api-reference.html"><strong aria-hidden="true">3.</strong> API Reference</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="Contribution.html"><strong aria-hidden="true">6.</strong> Contribution</a></li><li class="chapter-item expanded "><a href="code_of_conduct.html"><strong aria-hidden="true">7.</strong> Code of Conduct</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -232,163 +232,21 @@ sudo apt install hornet
 <li>See <a href="docker/README.html">Docker</a></li>
 </ul>
 <h1><a class="header" href="#tutorials" id="tutorials">Tutorials</a></h1>
+<!-- - [Setup HORNET](./setup.md) -->
 <ul>
-<li><a href="tutorials/./setup.html">Setup HORNET</a></li>
-<li><a href="tutorials/./setup.html">Build HORNET</a></li>
-<li><a href="tutorials/./private_tangle.html">Run a private Tangle</a></li>
-<li><a href="tutorials/./entry_node.html">Hosting An Autopeering Entry Node</a></li>
+<li><a href="tutorials/./build.html">Build HORNET</a></li>
+<li><a href="tutorials/./run.html">Run HORNET</a></li>
 </ul>
-<h1><a class="header" href="#setup-a-hornet-node" id="setup-a-hornet-node">Setup a HORNET Node</a></h1>
-<p>This is a small tutorial on how to install HORNET using our apt repository or using the RPM package.</p>
-<h3><a class="header" href="#preparations" id="preparations">Preparations</a></h3>
+<!-- - [Run a private Tangle](./private_tangle.md)
+- [Hosting An Autopeering Entry Node](./entry_node.md) -->
+<h2><a class="header" href="#community-tutorials" id="community-tutorials">Community Tutorials</a></h2>
 <ul>
-<li>Setup an e.g. Ubuntu (&gt;= 16.04) or CentOS (&gt;= 7) server with at least 1GB RAM</li>
-<li>Optional but recommended: Add a ssh key, activate a firewall ...</li>
-<li>Update your system (Ubuntu) with:<br>
-<pre><code class="language-bash">sudo apt update
-sudo apt upgrade
-</code></pre>
-</li>
-<li>Allow basic ports in your firewall settings (and your router if you run HORNET behind one).<br>
-The following ports are important for a flawless node operation.<br>
-Please note that these ports can be customized in your <code>config.json</code>:<br>
-<pre><code>14626 UDP - Autopeering port
-15600 TCP - Gossip (neighbors) port
-14265 TCP - API port (optional if you don't want to access your node's API from external)
-</code></pre>
-Please also have a look at the <a href="https://github.com/gohornet/hornet/wiki/Configuration">configuration documentation</a></li>
+<li><a href="https://github.com/svenger87/hornet-alphanet-tutorial">hornet-testnet-tutorial by svenger87</a></li>
+<li><a href="https://tanglebay.com/article/3-hornet-node-chrysalis/">(DE) Hornet Node (Chrysalis) by Tanglebay.com</a></li>
 </ul>
-<h3><a class="header" href="#installation-ubuntu" id="installation-ubuntu">Installation (Ubuntu)</a></h3>
-<ul>
-<li>
-<p>Import the key that is used to sign the release</p>
-<pre><code class="language-bash">wget -qO - https://ppa.hornet.zone/pubkey.txt | sudo apt-key add -
-</code></pre>
-</li>
-<li>
-<p>Add the HORNET repository to your APT sources<br>
-<strong>Stable:</strong></p>
-<pre><code class="language-bash">sudo sh -c 'echo &quot;deb http://ppa.hornet.zone stable main&quot; &gt;&gt; /etc/apt/sources.list.d/hornet.list'
-</code></pre>
-<p><strong>Testing (pre-releases):</strong><br>
-:warning: <strong>Do not use in production, bugs are likely</strong> :warning:</p>
-<pre><code class="language-bash">sudo sh -c 'echo &quot;deb http://ppa.hornet.zone testing main&quot; &gt;&gt; /etc/apt/sources.list.d/hornet.list'
-</code></pre>
-<p><strong>Alpha (pre-releases):</strong><br>
-:warning: <strong>Only for Comnet, do not use in production, bugs are likely</strong> :warning:</p>
-<p>Follow the updates in the #comnet channel if you want to run this version!</p>
-<pre><code class="language-bash">sudo sh -c 'echo &quot;deb http://ppa.hornet.zone alpha main&quot; &gt;&gt; /etc/apt/sources.list.d/hornet.list'
-</code></pre>
-</li>
-<li>
-<p>Install HORNET:</p>
-<pre><code class="language-bash">sudo apt update
-sudo apt install hornet
-</code></pre>
-</li>
-</ul>
-<h3><a class="header" href="#installation-centos" id="installation-centos">Installation (CentOS)</a></h3>
-<ul>
-<li>
-<p>Open <a href="https://github.com/gohornet/hornet/releases/latest">HORNET latest release page</a></p>
-</li>
-<li>
-<p>Copy the link to the RPM package (e.g. <code>hornet-0.4.0-x86_64.rpm</code>)</p>
-</li>
-<li>
-<p>Consider validating the RPM package checksum against the corresponding one from the <code>checksums.txt</code></p>
-</li>
-<li>
-<p>Install the HORNET RPM package from the releases page, e.g. version v0.4.0:</p>
-<pre><code class="language-bash">sudo yum install https://github.com/gohornet/hornet/releases/download/v0.4.0/hornet-0.4.0-x86_64.rpm
-</code></pre>
-<p>or from a file:</p>
-<pre><code class="language-bash">sudo yum install hornet-0.4.0-x86_64.rpm
-</code></pre>
-</li>
-<li>
-<p>Note: Checksum can be verified if the RPM package and checksum file are present in the same directory, should return a value and the file name:</p>
-<pre><code class="language-bash">grep &quot;^$(sha256sum hornet-0.4.0-x86_64.rpm)$&quot; checksums.txt
-</code></pre>
-</li>
-</ul>
-<h3><a class="header" href="#setup" id="setup">Setup</a></h3>
-<ul>
-<li>Adapt the settings to your needs (e.g. <a href="tutorials/setup.html#comnet-community-network-setup">setup for comnet</a>)</li>
-<li>Enable the HORNET service:
-<pre><code class="language-bash">sudo systemctl enable hornet.service
-</code></pre>
-</li>
-<li>Start HORNET:
-<pre><code class="language-bash">sudo service hornet start
-</code></pre>
-</li>
-<li>Watch the logs with:
-<pre><code class="language-bash">sudo journalctl -u hornet -f
-</code></pre>
-</li>
-<li>Done</li>
-</ul>
-<h3><a class="header" href="#operation" id="operation">Operation</a></h3>
-<ul>
-<li>Stop HORNET
-<ul>
-<li><code>sudo service hornet stop</code></li>
-</ul>
-</li>
-<li>Start HORNET
-<ul>
-<li><code>sudo service hornet start</code></li>
-</ul>
-</li>
-<li>Restart HORNET
-<ul>
-<li><code>sudo service hornet restart</code></li>
-</ul>
-</li>
-<li>Check HORNET status
-<ul>
-<li><code>sudo service hornet status</code></li>
-</ul>
-</li>
-<li>Watch the logs
-<ul>
-<li><code>sudo journalctl -u hornet -f</code></li>
-</ul>
-</li>
-<li>Remove the mainnetdb (e.g. in case of a failure):
-<ol>
-<li>Stop HORNET</li>
-<li><code>sudo rm -r /var/lib/hornet/mainnetdb</code></li>
-<li>Start HORNET</li>
-</ol>
-</li>
-</ul>
-<h3><a class="header" href="#configuration" id="configuration">Configuration</a></h3>
-<p>You can find HORNET's configuration files in:<br>
-<code>/var/lib/hornet/</code><br></p>
-<p>Additional cli arguments can be set in:<br>
-<code>/etc/default/hornet</code><br><br></p>
-<p>If you have modified the <code>config.json</code>, you have to restart HORNET:<br>
-<code>sudo service hornet stop &amp;&amp; sudo service hornet start</code><br>
-or<br>
-<code>sudo service hornet restart</code></p>
-<h3><a class="header" href="#comnet-community-network-setup" id="comnet-community-network-setup">Comnet (community network) setup</a></h3>
-<ol>
-<li>Edit <code>/etc/default/hornet</code>:
-<pre><code class="language-bash">sudo nano /etc/default/hornet
-</code></pre>
-<code>/etc/default/hornet</code>:
-<pre><code># Add cli arguments to hornet, e.g.:
-# (For the full list of cli options run 'hornet -h')
-OPTIONS=&quot;--config config_comnet&quot;
-</code></pre>
-</li>
-<li>Start HORNET</li>
-</ol>
-<p>This is a small tutorial on how to build HORNET if you don't want to use our <a href="https://github.com/gohornet/hornet/releases">pre-built binaries</a>. </p>
+<p>This is a small tutorial on how to build HORNET.</p>
 <p><strong>Note: This tutorial assumes that you are using Ubuntu. The setup and build process may differ on other OS.</strong></p>
-<h3><a class="header" href="#preparations-1" id="preparations-1">Preparations</a></h3>
+<h3><a class="header" href="#preparations" id="preparations">Preparations</a></h3>
 <ul>
 <li>Install Go1.14:
 <pre><code class="language-bash">   sudo add-apt-repository ppa:longsleep/golang-backports
@@ -422,8 +280,7 @@ The output should be something like this:
 <pre><code class="language-bash">cd hornet
 </code></pre>
 </li>
-<li>Checkout the branch you want to build (optional if you want to build the latest HORNET release (master)):
-<br>As an example we want to build HORNET from the <code>develop</code> branch
+<li>Checkout the develop branch to build HORNET for Chrysalis (IOTA 1.5) (optional if you want to build the latest HORNET release for the current Network (IOTA 1.0), please use the <code>master</code> branch):
 <pre><code class="language-bash">git checkout develop
 </code></pre>
 </li>
@@ -441,212 +298,8 @@ Test, if the build was successful:
 </code></pre>
 If HORNET prints out its version, the build was successful.</li>
 </ul>
-<p>This is a small tutorial on how to run your own private Tangle.</p>
-<p><strong>Note: This tutorial assumes that you are using Ubuntu. The setup process may differ on other OS.</strong></p>
-<h3><a class="header" href="#preparations-2" id="preparations-2">Preparations</a></h3>
-<ul>
-<li>Set up your server and install HORNET (<a href="tutorials/./setup.html">APT install</a>) - <strong>Do not start it yet</strong></li>
-<li>Generate a secure Seed. Even if it's a private Tangle without real value you should use a random Seed.</li>
-</ul>
-<h3><a class="header" href="#configuration-1" id="configuration-1">Configuration</a></h3>
-<p>Adapt the configuration to your needs<br>
-<br></p>
-<p><strong>Enable the coordinator plugin:</strong></p>
-<pre><code class="language-json">&quot;node&quot;:{
-    &quot;alias&quot;: &quot;Coordinator&quot;,
-    &quot;showAliasInGetNodeInfo&quot;: false,
-    &quot;disablePlugins&quot;: [],
-    &quot;enablePlugins&quot;: [&quot;Coordinator&quot;]
-},
-</code></pre>
-<p><strong>Coordinator settings:</strong>
-<br>
-<a href="https://github.com/gohornet/hornet/wiki/Configuration#Coordinator">Coordinator configuration docu</a>
-<br><br>
-Some hints:</p>
-<ul>
-<li>Set a low MWM. If you are the only one using this Tangle, you need no (high) spam protection</li>
-<li>The higher the merkle tree depth, the longer it will take to compute the merkle tree. Calculate how many milestones you really need:<br>Number of possible milestones: 2<sup>merkleTreeDepth</sup></li>
-</ul>
-<br>
-Example:
-<pre><code class="language-json">  &quot;coordinator&quot;: {
-    &quot;address&quot;: &quot;&quot;,
-    &quot;securityLevel&quot;: 2,
-    &quot;merkleTreeDepth&quot;: 18,
-    &quot;mwm&quot;: 5,
-    &quot;stateFilePath&quot;: &quot;coordinator.state&quot;,
-    &quot;merkleTreeFilePath&quot;: &quot;coordinator.tree&quot;,
-    &quot;intervalSeconds&quot;: 60,
-    &quot;checkpoints&quot;: {
-      &quot;maxTrackedTails&quot;: 10000
-    }
-  },
-</code></pre>
-<p><strong>Global snapshot settings:</strong>
-<br>
-<a href="https://github.com/gohornet/hornet/wiki/Configuration#Snapshots">Snapshot configuration docu</a>
-<br><br></p>
-<pre><code class="language-json">  &quot;snapshots&quot;: {
-    &quot;loadType&quot;: &quot;global&quot;,
-    &quot;global&quot;: {
-      &quot;path&quot;: &quot;snapshot.csv&quot;,
-      &quot;spentAddressesPaths&quot;: [],
-      &quot;index&quot;: 0
-    }
-  },
-</code></pre>
-<h3><a class="header" href="#generate-the-merkle-tree" id="generate-the-merkle-tree">Generate the merkle tree</a></h3>
-<p><strong>Note: This may take some time (depending on the merkle tree depth and your hardware)</strong></p>
-<ol>
-<li>
-<pre><code class="language-bash">cd /var/lib/hornet
-sudo -u hornet COO_SEED=&quot;YOUR9COO9SEED9HERE...&quot; hornet tool merkle
-</code></pre>
-<p>The output will look like this:</p>
-<pre><code>calculating 1024 addresses...
-calculated 1024/1024 (100.00%) addresses (took 1s).
-calculating nodes for layer 9
-calculating nodes for layer 8
-calculating nodes for layer 7
-calculating nodes for layer 6
-calculating nodes for layer 5
-calculating nodes for layer 4
-calculating nodes for layer 3
-calculating nodes for layer 2
-calculating nodes for layer 1
-calculating nodes for layer 0
-merkle tree root: BHKJSBMRSZLFMXJFYE9NHYTZCRAZQHLZTIBTKVNZLVWAXKESPOANYARWQYOYYHONDJYEAMMSOQEGGEPKB
-successfully created merkle tree (took 1s).
-</code></pre>
-</li>
-<li>
-<p>Add the <code>merkle tree root</code> address to your config<br><br>
-Example:</p>
-</li>
-</ol>
-<pre><code class="language-json">  &quot;coordinator&quot;: {
-    &quot;address&quot;: &quot;BHKJSBMRSZLFMXJFYE9NHYTZCRAZQHLZTIBTKVNZLVWAXKESPOANYARWQYOYYHONDJYEAMMSOQEGGEPKB&quot;,
-    &quot;securityLevel&quot;: 2,
-    &quot;merkleTreeDepth&quot;: 18,
-    &quot;mwm&quot;: 5,
-    &quot;stateFilePath&quot;: &quot;coordinator.state&quot;,
-    &quot;merkleTreeFilePath&quot;: &quot;coordinator.tree&quot;,
-    &quot;intervalSeconds&quot;: 60,
-    &quot;checkpoints&quot;: {
-      &quot;maxTrackedTails&quot;: 10000
-    }
-  },
-</code></pre>
-<h3><a class="header" href="#initial-iota-distribution" id="initial-iota-distribution">Initial IOTA Distribution</a></h3>
-<p>If you set up a new tangle you initially need to distribute the IOTA to at least one address.</p>
-<ol>
-<li>
-<p>Generate a secure (random) Seed and generate an address with this Seed</p>
-</li>
-<li>
-<p>Backup this Seed</p>
-</li>
-<li>
-<p>Create a new file called <code>snapshot.csv</code> and add this contend:</p>
-<pre><code>YOUR9GENERATED9ADDRESS9FROM9YOUR9SEED;2779530283277761
-</code></pre>
-</li>
-<li>
-<p>Save this file to the HORNET dir (<code>/var/lib/hornet</code>)</p>
-</li>
-</ol>
-<h3><a class="header" href="#bootstrap-the-coordinator" id="bootstrap-the-coordinator">Bootstrap the Coordinator</a></h3>
-<ol>
-<li>Change to the HORNET dir:
-<pre><code>cd /var/lib/hornet
-</code></pre>
-</li>
-<li>Run HORNET the first time:
-<pre><code>sudo -u hornet COO_SEED=&quot;YOUR9COO9SEED9HERE...&quot; hornet --cooBootstrap
-</code></pre>
-</li>
-<li>Once the bootstrap process is done you can stop HORNET (CTRL+C) and let it run as a service:
-<pre><code>sudo sh -c 'echo &quot;COO_SEED=YOUR9COO9SEED9HERE...&quot; &gt;&gt; /etc/default/hornet'
-sudo systemctl enable --now hornet.service
-</code></pre>
-</li>
-<li>Congrats, your HORNET Coordinator is up and running!</li>
-</ol>
-<h3><a class="header" href="#add-additional-hornet-nodes-to-your-private-tangle" id="add-additional-hornet-nodes-to-your-private-tangle">Add additional HORNET nodes to your private tangle</a></h3>
-<ol>
-<li>Install an additional HORNET</li>
-<li>Copy over the config.json from your HORNET Coordinator (<strong>make sure you removed <code>Coordinator</code> from the <code>&quot;enablePlugins&quot;</code></strong>)</li>
-<li>Copy over the <code>snapshot.csv</code> from your HORNET Coordinator</li>
-<li>Start HORNET</li>
-</ol>
-<p>Note: Once your HORNET Coordinator node created the first local snapshot, you can use this local snapshot to add new HORNET nodes to your private tangle.</p>
-<h3><a class="header" href="#use-a-new-merkle-tree" id="use-a-new-merkle-tree">Use a new merkle tree</a></h3>
-<p>In case you run out of new milestones, you can replace the old merkle tree with a new one.</p>
-<ol>
-<li>Stop the HORNET Coordinator</li>
-<li>Generate a new merkle tree</li>
-<li>Replace the <code>coordinator.address</code> in your <code>config.json</code> with the new <code>merkle tree root</code> address</li>
-<li>Migrate your HORNET Coordinator to this merkle tree:
-<pre><code>cd /var/lib/hornet
-sudo rm coordinator.state
-sudo -u hornet hornet --overwriteCooAddress --cooBootstrap --cooStartIndex xxxx
-</code></pre>
-Note: Replace <code>xxxx</code> with the start index (e.g. last issued milestone index + 1)</li>
-</ol>
-<p>This is a tutorial on how to host a autopeering entry node.</p>
-<p><strong>Note: This tutorial assumes that you are using Ubuntu and our <a href="tutorials/./setup.html">APT install</a>. The setup process may differ on other OS or install methods.</strong></p>
-<h3><a class="header" href="#preparations-3" id="preparations-3">Preparations</a></h3>
-<ul>
-<li>Setup and secure your server (Firewall, SSH-Key,...)</li>
-<li>Install HORNET (don't start it yet!)</li>
-<li>It is recommended to use a domain name for your entry node (you'll need a proxy setup, e.g. nginx). However an IP address will work too.</li>
-</ul>
-<h3><a class="header" href="#configuration-2" id="configuration-2">Configuration</a></h3>
-<ul>
-<li>Randomly generate a Base58 encoded 256-bit string (seed):
-<ul>
-<li>Option 1: Generate your seed with a true random number generator (recommended for production usage).</li>
-<li>Option 2: Use the build in HORNET seed generator: <code>hornet tool seedgen</code>.</li>
-</ul>
-</li>
-<li>Switch on the autopeering mode in your <code>config.json</code>:<br>
-<code>/var/lib/hornet/config.json</code>
-<pre><code class="language-json">...
-&quot;network&quot;: {
-    ...
-    &quot;autopeering&quot;: {
-        &quot;bindAddress&quot;: &quot;0.0.0.0:14626&quot;,
-        &quot;runAsEntryNode&quot;: true,
-        &quot;seed&quot;: &quot;7xFNTP5Fc3wnD78LarNTrvRoKiLESA9qecn3eR5HSVBj&quot;
-    }
-}
-...
-</code></pre>
-</li>
-<li>Start HORNET with <code>sudo service start hornet &amp;&amp; sudo journalctl -n hornet -f</code>. HORNET will start in an autopeering entry node only mode. Other functions are disabled in this mode.</li>
-<li>In the HORNET logs, you will see something like this:
-<pre><code>INFO    Autopeering     Autopeering started: ID=a0ba6bf62d6fe911 Address=0.0.0.0:14626/udp PublicKey=9CT42uZC6GetwoT2Jz7Lc5t6LGvXphp9gLvEsdoXEizV
-</code></pre>
-Note down your PublicKey.<br>
-<strong>Your entry node address is <code>&lt;PublicKey&gt;@&lt;your-domain.tld&gt;:&lt;autopeering-port&gt;</code></strong></li>
-<li>Add your entry node address to the <code>network.autopeering.entryNodes</code> in your nodes <code>config.json</code></li>
-<li>Done, your nodes should now autopeer with the help of your entry node.</li>
-</ul>
-<h3><a class="header" href="#monitoring" id="monitoring">Monitoring</a></h3>
-<p>You can monitor your entry node with the <code>healthz</code> API route.<br>
-<code>&lt;your-domain.tld&gt;:&lt;api-port&gt;/healthz</code><br>
-It will return an http status code 200 if everything is OK.</p>
-<h3><a class="header" href="#hosting-a-public-entry-node" id="hosting-a-public-entry-node">Hosting a public entry node</a></h3>
-<p>If you want to host an entry node for a public network such as the mainnet, there are a few things to consider:</p>
-<ul>
-<li>You should be experienced in working with servers and server security.</li>
-<li>A domain name is a must have.</li>
-<li>Your domain name should have both, an A (IPv4) and AAAA (IPv6) record.</li>
-<li>Your entry node gets monitored (e.g. with the <code>healthz</code> API and an uptime monitor).</li>
-<li>You are able to update your entry node shortly after a new HORNET version gets released.</li>
-</ul>
-<p>If these points are not a problem for you, feel free to contact us (e.g. in the <a href="https://discord.iota.org/">official IOTA Discord <code>#hornet</code> channel</a>) to have your entry node added to the official entry nodes!</p>
+<p>This is a small tutorial on how to build HORNET.</p>
+<p><strong>Note: This tutorial assumes that you have prebuilt HORNET. Learn <a href="tutorials/./build.html">how to build HORNET here</a></strong></p>
 <h1><a class="header" href="#api-reference" id="api-reference">API Reference</a></h1>
 <ul>
 <li><a href="https://editor.swagger.io/?url=https://raw.githubusercontent.com/rufsam/protocol-rfcs/master/text/0026-rest-api/rest-api.yaml">rest-api specification</a></li>
